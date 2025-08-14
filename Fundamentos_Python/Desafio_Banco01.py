@@ -1,8 +1,12 @@
+import datetime
+import pytz
+
 valor = 0
 extrato = ""
 limite = 500
 numero_saques = 0
 LIMITE_SAQUES = 3
+horario_brasilia = pytz.timezone('America/Sao_Paulo')
 
 while True:
     opcao = int(input(('''    ========Menu========
@@ -22,8 +26,9 @@ while True:
             print('Valor inválido! O depósito deve ser maior que zero.')
             continue
         else:
+            data_hora = datetime.datetime.now(horario_brasilia)
             print(f'Você depositou R$ {valor_deposito:.2f}')
-            extrato += f'Depósito: R$ {valor_deposito:.2f}\n'
+            extrato += f'Depósito: R$ {valor_deposito:.2f} {data_hora}\n'
             valor += valor_deposito
     elif opcao == 2:
         valor_saque = float(input('Digite o valor a ser sacado: '))
@@ -34,9 +39,10 @@ while True:
         elif numero_saques >= LIMITE_SAQUES:
             print(f'Número máximo de saques por dia é {LIMITE_SAQUES}.')
         else:
+            data_hora = datetime.datetime.now(horario_brasilia)
             valor -= valor_saque
             numero_saques += 1
-            extrato += f'Saque: R$ {valor_saque:.2f}\n'
+            extrato += f'Saque: R$ {valor_saque:.2f} {data_hora}\n'
             print(f'Você sacou R$ {valor_saque:.2f}')
     elif opcao == 3:
         print('\n========= Extrato =========')
