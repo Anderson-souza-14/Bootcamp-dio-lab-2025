@@ -40,10 +40,11 @@ def sacar(*,saldo, extrato, valor_saque, limite, numero_saques, LIMITE_SAQUES, d
     elif excedeu_saques:
         print(f'Número máximo de saques por dia é {LIMITE_SAQUES}.')
     else:
-        saldo -= valor_saque
         numero_saques += 1
         extrato += f'Saque: R$ {valor_saque:.2f} {data_hora}\n'
+        saldo -= valor_saque
         print(f'Você sacou R$ {valor_saque:.2f}')
+    return saldo, extrato, numero_saques
 
 def consultar_saldo(saldo, extrato):
     print('\n========= Extrato =========')
@@ -101,8 +102,9 @@ def main():
             saldo, extrato = depositar(saldo, extrato, valor_deposito, data_hora)
         elif opcao == 2:
             valor_saque = float(input('Digite o valor a ser sacado: '))
-            sacar(saldo=saldo, extrato=extrato, valor_saque=valor_saque, limite=limite,
-                  numero_saques=numero_saques, LIMITE_SAQUES=LIMITE_SAQUES, data_hora=data_hora)
+            saldo, extrato, numero_saques = sacar(saldo=saldo, extrato=extrato, valor_saque=valor_saque, 
+                                                  limite=limite, numero_saques=numero_saques, 
+                                                  LIMITE_SAQUES=LIMITE_SAQUES, data_hora=data_hora)
         elif opcao == 3:
             consultar_saldo(saldo, extrato)
         elif opcao == 4:
