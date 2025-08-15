@@ -90,7 +90,6 @@ def main():
     agencia = "0001"
     contas = []
     usuarios = []
-    numero_conta = 1
     horario_brasilia = pytz.timezone('America/Sao_Paulo')
 
     while True:
@@ -112,10 +111,10 @@ def main():
         elif opcao == 5:
             listar_contas(contas)
         elif opcao == 6:
+            numero_conta = len(contas) + 1
             conta = criar_conta(agencia, numero_conta, usuarios)
             if conta:
                 contas.append(conta)
-                numero_conta += 1
         elif opcao == 0:
             print('Obrigado por utilizar nosso sistema!')
             break
