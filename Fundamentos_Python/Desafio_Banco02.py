@@ -87,7 +87,7 @@ def main():
     limite = 500
     numero_saques = 0
     LIMITE_SAQUES = 3
-    agencia = "0001"
+    AGENCIA = "0001"
     contas = []
     usuarios = []
     horario_brasilia = pytz.timezone('America/Sao_Paulo')
@@ -112,7 +112,7 @@ def main():
             listar_contas(contas)
         elif opcao == 6:
             numero_conta = len(contas) + 1
-            conta = criar_conta(agencia, numero_conta, usuarios)
+            conta = criar_conta(AGENCIA, numero_conta, usuarios)
             if conta:
                 contas.append(conta)
         elif opcao == 0:
